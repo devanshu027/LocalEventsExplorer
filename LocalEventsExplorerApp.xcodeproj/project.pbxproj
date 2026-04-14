@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D40593EC2F8E73EE000E447B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D40593EB2F8E73EE000E447B /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D40593AF2F8E70A4000E447B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40593EC2F8E73EE000E447B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = LocalEventsExplorerApp;
 			packageProductDependencies = (
+				D40593EB2F8E73EE000E447B /* Kingfisher */,
 			);
 			productName = LocalEventsExplorerApp;
 			productReference = D405939C2F8E709F000E447B /* LocalEventsExplorerApp.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = D40593932F8E709F000E447B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D40593EA2F8E73EE000E447B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D405939D2F8E709F000E447B /* Products */;
 			projectDirPath = "";
@@ -578,6 +587,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D40593EA2F8E73EE000E447B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D40593EB2F8E73EE000E447B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D40593EA2F8E73EE000E447B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D40593942F8E709F000E447B /* Project object */;
 }
