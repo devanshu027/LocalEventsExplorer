@@ -18,6 +18,7 @@ final class EventRepository: EventRepositoryProtocol {
     
     private let context = PersistenceController.shared.container.viewContext
     
+    // Saving events to the database
     func save(events: [Event]) {
         deleteAll()
         
@@ -29,6 +30,7 @@ final class EventRepository: EventRepositoryProtocol {
         try? context.save()
     }
     
+    // Fetch events from the database
     func fetchEvents() -> AnyPublisher<[Event], Never> {
         Future { promise in
             let request: NSFetchRequest<CD_Event> = CD_Event.fetchRequest()
@@ -38,6 +40,7 @@ final class EventRepository: EventRepositoryProtocol {
         .eraseToAnyPublisher()
     }
     
+    // Empty the database
     private func deleteAll() {
         let request: NSFetchRequest<NSFetchRequestResult> = CD_Event.fetchRequest()
         let delete = NSBatchDeleteRequest(fetchRequest: request)

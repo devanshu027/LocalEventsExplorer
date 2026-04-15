@@ -12,6 +12,7 @@ protocol EventServiceProtocol {
     func getEvents() -> AnyPublisher<[Event], Never>
 }
 
+// Handles API + fallback
 final class EventService: EventServiceProtocol {
     
     private let apiClient: APIClientProtocol

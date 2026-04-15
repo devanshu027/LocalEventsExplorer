@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// Protocol for dependency injection (important for testing)
 protocol APIClientProtocol {
     func fetchEvents() -> AnyPublisher<[Event], Error>
 }
@@ -15,6 +16,7 @@ protocol APIClientProtocol {
 final class APIClient: APIClientProtocol {
     
     func fetchEvents() -> AnyPublisher<[Event], Error> {
+        // Load file from bundle
         guard let url = Bundle.main.url(forResource: "event", withExtension: "json") else {    //Through Local JSON
                     return Fail(error: URLError(.fileDoesNotExist))
                         .eraseToAnyPublisher()
@@ -23,7 +25,7 @@ final class APIClient: APIClientProtocol {
                 return Just(url)
                     .tryMap { try Data(contentsOf: $0) }
                     .decode(type: [Event].self, decoder: decoder)
-                    .delay(for: .seconds(1), scheduler: DispatchQueue.main)
+                    .delay(for: .seconds(2), scheduler: DispatchQueue.main)
                     .eraseToAnyPublisher()
         
 //        URLSession.shared.dataTaskPublisher(for: Endpoints.events)

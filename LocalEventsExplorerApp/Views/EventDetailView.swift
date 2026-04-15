@@ -12,6 +12,7 @@ import Kingfisher
 struct EventDetailView: View {
     
     let event: Event
+    let userLocation: CLLocation?
     
     var body: some View {
         ScrollView {
@@ -19,9 +20,7 @@ struct EventDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 
                 KFImage(URL(string: event.imageURL))
-                    .placeholder {
-                        ProgressView()
-                    }
+                    .placeholder { ProgressView() }
                     .resizable()
                     .scaledToFill()
                     .frame(height: 220)
@@ -36,29 +35,34 @@ struct EventDetailView: View {
                     .font(.headline)
                     .foregroundColor(.gray)
                 
+                Text(event.distance(from: userLocation))
+                    .font(.subheadline)
+                    .foregroundColor(.blue)
+                
                 Text(event.date, style: .date)
                     .font(.subheadline)
                 
-                Map(
-                    coordinateRegion: .constant(
-                        MKCoordinateRegion(
-                            center: CLLocationCoordinate2D(
-                                latitude: event.latitude,
-                                longitude: event.longitude
-                            ),
-                            span: MKCoordinateSpan(
-                                latitudeDelta: 0.01,
-                                longitudeDelta: 0.01
-                            )
-                        )
-                    )
-                )
-                .frame(height: 250)
-                .cornerRadius(12)
+                // MARK: - Navigation Button
+                Button {
+                    MapHelper.openMaps(for: event)
+                } label: {
+                    HStack {
+                        Image(systemName: "map")
+                        Text("Get Directions")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+                
+                Spacer()
             }
             .padding()
         }
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
     }
 }

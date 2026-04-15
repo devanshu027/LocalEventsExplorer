@@ -15,7 +15,7 @@ final class PersistenceController {
     let container: NSPersistentContainer
     
     private init() {
-        container = NSPersistentContainer(name: "LocalEventsExplorerApp")
+        container = NSPersistentContainer(name: "LocalEventsExplorerApp")  //Loading Local database
         
         container.loadPersistentStores { _, error in
             if let error = error {

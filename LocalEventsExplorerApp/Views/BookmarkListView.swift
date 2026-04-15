@@ -1,39 +1,41 @@
 //
-//  EventListView.swift
+//  BookmarkListView.swift
 //  LocalEventsExplorerApp
 //
-//  Created by Devanshu on 14/04/26.
+//  Created by Devanshu on 15/04/26.
 //
 
 import SwiftUI
-import Combine
 
-struct EventListView: View {
-    
+struct BookmarkListView: View {
+    // Shared ViewModel (contains all events)
     @ObservedObject var viewModel: EventListViewModel
+    
+    // Bookmark store (single source of truth)
     @ObservedObject var bookmarkStore: BookmarkStore
     @StateObject private var locationService = LocationService()
     
     var body: some View {
         NavigationView {
-            if viewModel.isLoading {
-                    
-                    // Show shimmer list
-                    List(0..<6, id: \.self) { _ in
-                        EventRowShimmerView()
-                    }
-                    
+            
+            // Filter only bookmarked events
+            let bookmarkedEvents = viewModel.events.filter {
+                bookmarkStore.isBookmarked(id: $0.id)
+            }
+            
+            // Handle empty state
+            if bookmarkedEvents.isEmpty {
+                Text("No bookmarked events ⭐")
+                    .foregroundColor(.gray)
             } else {
-                
-                // Actual Data
-                List(viewModel.events) { event in
+                List(bookmarkedEvents) { event in
                     
                     NavigationLink(
                         destination: EventDetailView(event: event, userLocation: locationService.location)
                     ) {
                         EventRowView(
                             event: event,
-                            isBookmarked: bookmarkStore.isBookmarked(id: event.id),
+                            isBookmarked: true,
                             onBookmarkTap: {
                                 bookmarkStore.toggleBookmark(id: event.id)
                             }
@@ -42,12 +44,7 @@ struct EventListView: View {
                 }
             }
         }
-        .navigationTitle("Events")
-        .toolbar(.visible, for: .tabBar)
-        .onAppear {
-            viewModel.fetchTrigger.send(())
-            locationService.requestPermission()
-            locationService.startUpdating()
-        }
+        .navigationTitle("Bookmarks")
+        .toolbar(.visible, for: .tabBar) 
     }
 }

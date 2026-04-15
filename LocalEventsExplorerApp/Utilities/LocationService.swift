@@ -14,15 +14,34 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
     private let manager = CLLocationManager()
     
     @Published var location: CLLocation?
+    @Published var authorizationStatus: CLAuthorizationStatus?
     
     override init() {
         super.init()
         manager.delegate = self
+    }
+    
+    func requestPermission() {
         manager.requestWhenInUseAuthorization()
+    }
+    
+    func startUpdating() {
         manager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    // MARK: - Delegate
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        authorizationStatus = manager.authorizationStatus
+        
+        if manager.authorizationStatus == .authorizedWhenInUse ||
+            manager.authorizationStatus == .authorizedAlways {
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
         location = locations.first
     }
 }

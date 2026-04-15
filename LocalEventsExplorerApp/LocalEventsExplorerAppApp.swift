@@ -14,9 +14,7 @@ struct LocalEventsExplorerAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            EventListView()
-                .environment(\.managedObjectContext,
-                              persistenceController.container.viewContext)
+            EventsTabView()  // Root entry with tabs
         }
     }
 }

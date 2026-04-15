@@ -12,13 +12,16 @@ struct EventRowView: View {
     
     let event: Event
     let isBookmarked: Bool
+    
+    // Callback for bookmark toggle
     let onBookmarkTap: () -> Void
     
     var body: some View {
         HStack(spacing: 12) {
             
             KFImage(URL(string: event.imageURL))
-                .placeholder { ProgressView() }
+                .placeholder { ProgressView()  // shown while loading
+                }
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80, height: 80)
@@ -35,7 +38,6 @@ struct EventRowView: View {
             }
             
             Spacer()
-            
             Button(action: onBookmarkTap) {
                 Image(systemName: isBookmarked ? "star.fill" : "star")
                     .foregroundColor(.yellow)
