@@ -27,7 +27,11 @@ final class EventService: EventServiceProtocol {
     func getEvents() -> AnyPublisher<[Event], Never> {
         apiClient.fetchEvents()
             .handleEvents(receiveOutput: { [weak self] events in
-                self?.repository.save(events: events)
+                do {
+                    try self?.repository.save(events: events)
+                } catch {
+                    print("Save Error:", error.localizedDescription)
+                }
             })
             .catch { [weak self] _ in
                 self?.repository.fetchEvents() ?? Just([]).eraseToAnyPublisher()

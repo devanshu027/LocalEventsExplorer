@@ -18,8 +18,7 @@ struct EventsTabView: View {
             
             // MARK: - All Events Tab
             EventListView(
-                viewModel: viewModel,
-                bookmarkStore: bookmarkStore
+                viewModel: viewModel
             )
             .tabItem {
                 Label("Events", systemImage: "list.bullet")
@@ -34,5 +33,6 @@ struct EventsTabView: View {
                 Label("Bookmarks", systemImage: "star.fill")
             }
         }
+        .environmentObject(bookmarkStore)
     }
 }

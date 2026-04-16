@@ -6,7 +6,8 @@
     "latitude": 26.8467,
     "longitude": 80.9462,
     "date": "2026-05-10T10:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+    "imageURL": "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+    "description": "Enjoy a wide variety of delicious cuisines from across India with live cooking shows and music."
   },
   {
     "id": "2",
@@ -15,7 +16,8 @@
     "latitude": 26.8500,
     "longitude": 80.9920,
     "date": "2026-05-12T18:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2"
+    "imageURL": "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2",
+    "description": "Experience an electrifying night with live performances by top artists and bands."
   },
   {
     "id": "3",
@@ -24,7 +26,8 @@
     "latitude": 28.5355,
     "longitude": 77.3910,
     "date": "2026-05-15T09:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1556761175-4b46a572b786"
+    "imageURL": "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    "description": "Network with entrepreneurs, investors, and innovators in this exciting startup meetup."
   },
   {
     "id": "4",
@@ -33,7 +36,8 @@
     "latitude": 13.0827,
     "longitude": 77.5877,
     "date": "2026-06-01T10:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1515187029135-18ee286d815b"
+    "imageURL": "https://images.unsplash.com/photo-1515187029135-18ee286d815b",
+    "description": "Join industry leaders and explore the latest trends in technology and innovation."
   },
   {
     "id": "5",
@@ -42,7 +46,8 @@
     "latitude": 28.6139,
     "longitude": 77.2090,
     "date": "2026-05-20T11:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+    "imageURL": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "description": "Explore stunning artworks from modern artists across the country."
   },
   {
     "id": "6",
@@ -51,7 +56,8 @@
     "latitude": 30.0869,
     "longitude": 78.2676,
     "date": "2026-05-25T06:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3"
+    "imageURL": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3",
+    "description": "Enjoy a wide variety of delicious cuisines from across India with live cooking shows and music."
   },
   {
     "id": "7",
@@ -60,7 +66,8 @@
     "latitude": 28.5672,
     "longitude": 77.3210,
     "date": "2026-05-18T19:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1517649763962-0c623066013b"
+    "imageURL": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+    "description": "Experience an electrifying night with live performances by top artists and bands."
   },
   {
     "id": "8",
@@ -69,7 +76,8 @@
     "latitude": 28.6139,
     "longitude": 77.2420,
     "date": "2026-05-22T10:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1512820790803-83ca734da794"
+    "imageURL": "https://images.unsplash.com/photo-1512820790803-83ca734da794",
+    "description": "Network with entrepreneurs, investors, and innovators in this exciting startup meetup."
   },
   {
     "id": "9",
@@ -78,7 +86,8 @@
     "latitude": 19.0760,
     "longitude": 72.8777,
     "date": "2026-06-05T12:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+    "imageURL": "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+    "description": "Join industry leaders and explore the latest trends in technology and innovation."
   },
   {
     "id": "10",
@@ -87,7 +96,8 @@
     "latitude": 17.3850,
     "longitude": 78.4867,
     "date": "2026-06-10T11:00:00Z",
-    "imageURL": "https://images.unsplash.com/photo-1511512578047-dfb367046420"
+    "imageURL": "https://images.unsplash.com/photo-1511512578047-dfb367046420",
+    "description": "Explore stunning artworks from modern artists across the country."
   }
 ]
 

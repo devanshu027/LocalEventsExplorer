@@ -21,7 +21,7 @@ final class MockAPIClient: APIClientProtocol {
         
         return Just([
             Event(id: "1", title: "Test Event", locationName: "Lucknow",
-                  latitude: 0, longitude: 0, date: Date(), imageURL: "")
+                  latitude: 0, longitude: 0, date: Date(), imageURL: "", description: "")
         ])
         .setFailureType(to: Error.self)
         .eraseToAnyPublisher()

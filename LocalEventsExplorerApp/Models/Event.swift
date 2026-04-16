@@ -16,4 +16,5 @@ struct Event: Identifiable, Codable {
     let longitude: Double
     let date: Date
     let imageURL: String
+    let description: String
 }

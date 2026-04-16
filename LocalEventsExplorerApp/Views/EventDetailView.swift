@@ -25,7 +25,7 @@ struct EventDetailView: View {
                     .scaledToFill()
                     .frame(height: 220)
                     .clipped()
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 
                 Text(event.title)
                     .font(.title)
@@ -34,6 +34,15 @@ struct EventDetailView: View {
                 Text(event.locationName)
                     .font(.headline)
                     .foregroundColor(.gray)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("About Event")
+                        .font(.headline)
+                    
+                    Text(event.description)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
                 
                 Text(event.distance(from: userLocation))
                     .font(.subheadline)
@@ -54,7 +63,8 @@ struct EventDetailView: View {
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 
                 Spacer()

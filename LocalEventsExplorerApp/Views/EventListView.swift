@@ -11,22 +11,22 @@ import Combine
 struct EventListView: View {
     
     @ObservedObject var viewModel: EventListViewModel
-    @ObservedObject var bookmarkStore: BookmarkStore
+    @EnvironmentObject var bookmarkStore: BookmarkStore
     @StateObject private var locationService = LocationService()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if viewModel.isLoading {
-                    
-                    // Show shimmer list
-                    List(0..<6, id: \.self) { _ in
-                        EventRowShimmerView()
-                    }
-                    
+                
+                // Show shimmer list
+                List(0..<6, id: \.self) { _ in
+                    EventRowShimmerView()
+                }
+                
             } else {
                 
                 // Actual Data
-                List(viewModel.events) { event in
+                List(viewModel.filteredEvents) { event in
                     
                     NavigationLink(
                         destination: EventDetailView(event: event, userLocation: locationService.location)
@@ -40,12 +40,17 @@ struct EventListView: View {
                         )
                     }
                 }
+                .searchable(text: $viewModel.searchText, prompt: "Search events")
+                .refreshable {
+                    // Pull to refresh triggers API again
+                    viewModel.fetchTrigger.send(())
+                }
             }
         }
         .navigationTitle("Events")
         .toolbar(.visible, for: .tabBar)
         .onAppear {
-            viewModel.fetchTrigger.send(())
+            viewModel.fetchIfNeeded()
             locationService.requestPermission()
             locationService.startUpdating()
         }

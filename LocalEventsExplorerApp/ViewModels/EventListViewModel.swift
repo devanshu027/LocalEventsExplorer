@@ -13,6 +13,8 @@ final class EventListViewModel: ObservableObject {
     
     @Published var events: [Event] = []
     @Published var isLoading = false
+    @Published var searchText: String = ""
+    @Published private(set) var filteredEvents: [Event] = []
     
     let fetchTrigger = PassthroughSubject<Void, Never>()
     
@@ -37,5 +39,31 @@ final class EventListViewModel: ObservableObject {
                 self?.isLoading = false
             }
             .store(in: &cancellables)
+        
+        // SEARCH + FILTER (WITH DEBOUNCE)
+        Publishers.CombineLatest(
+            $searchText
+                .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
+                .removeDuplicates(),
+            $events
+        )
+        .map { searchText, events in
+            
+            guard !searchText.isEmpty else {
+                return events
+            }
+            
+            return events.filter {
+                $0.title.localizedCaseInsensitiveContains(searchText) ||
+                $0.locationName.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .assign(to: &$filteredEvents)
+    }
+    
+    func fetchIfNeeded() {
+        guard events.isEmpty else { return }
+        fetchTrigger.send(())
     }
 }

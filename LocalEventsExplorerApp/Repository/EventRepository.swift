@@ -10,24 +10,30 @@ import CoreData
 import Combine
 
 protocol EventRepositoryProtocol {
-    func save(events: [Event])
+    func save(events: [Event]) throws
     func fetchEvents() -> AnyPublisher<[Event], Never>
 }
 
 final class EventRepository: EventRepositoryProtocol {
     
+    
     private let context = PersistenceController.shared.container.viewContext
     
     // Saving events to the database
-    func save(events: [Event]) {
+    func save(events: [Event]) throws {
         deleteAll()
         
-        events.forEach {
-            let entity = CD_Event(context: context)
-            entity.populate(from: $0)
+        do {
+            events.forEach { event in
+                let entity = CD_Event(context: context)
+                entity.populate(from: event)
+            }
+            
+            try context.save()
+            
+        } catch {
+            throw AppError.unknown(error)
         }
-        
-        try? context.save()
     }
     
     // Fetch events from the database

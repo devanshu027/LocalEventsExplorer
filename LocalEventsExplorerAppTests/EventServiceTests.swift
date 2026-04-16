@@ -45,7 +45,7 @@ final class EventServiceTests: XCTestCase {
             Event(id: "cached", title: "Offline Event",
                   locationName: "Delhi",
                   latitude: 0, longitude: 0,
-                  date: Date(), imageURL: "")
+                  date: Date(), imageURL: "", description: "")
         ]
         
         let service = EventService(apiClient: api, repository: repo)

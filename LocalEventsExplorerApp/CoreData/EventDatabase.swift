@@ -18,6 +18,7 @@ extension CD_Event {
         longitude = event.longitude
         date = event.date
         imageURL = event.imageURL
+        eventDescription = event.description
     }
     
     func toDomain() -> Event {
@@ -28,7 +29,8 @@ extension CD_Event {
             latitude: latitude,
             longitude: longitude,
             date: date ?? Date(),
-            imageURL: imageURL ?? ""
+            imageURL: imageURL ?? "",
+            description: eventDescription ?? ""
         )
     }
 }
